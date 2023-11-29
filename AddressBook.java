@@ -3,5 +3,9 @@ public class AddressBook{
         System.out.println("Hii and Welcome to MY ADDRESS BOOK Project !!!");
         AddContact add = new AddContact();
         add.addContact();
+        add.display();
+
+        add.editContact();
+        add.display();
     }
 }
