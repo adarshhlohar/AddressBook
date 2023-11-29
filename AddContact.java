@@ -5,8 +5,8 @@ public class AddContact {
     
     ArrayList<ContactDetail> list = new ArrayList<>();
     //Use Case-2 Ability to add a new Contact to Address Book
-    Scanner sc = new Scanner(System.in);
     void addContact() {
+        Scanner sc = new Scanner(System.in);
             ContactDetail contact = new ContactDetail();
             System.out.println("Enter the first name:");
             contact.setFirstName(sc.next());
@@ -33,6 +33,7 @@ public class AddContact {
 
 //Use Case3: method for editing the existing contact
 void editContact() {
+    Scanner sc = new Scanner(System.in);
     boolean isPersonFound=false;
     int indexOfPerson=0;
     System.out.println("Enter name for editing an existing contact:");
@@ -63,7 +64,7 @@ void editContact() {
         list.get(indexOfPerson).setEmailId(sc.next());
     }
     else {
-        System.out.println("Sorry,name does not exist");
+        System.out.println("Sorry,name  not found");
     }
     sc.close();
 }
