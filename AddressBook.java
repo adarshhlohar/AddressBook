@@ -6,6 +6,7 @@ public class AddressBook {
         AddContact add = new AddContact();
         Scanner sc = new Scanner(System.in);
         do {
+            Scanner sc = new Scanner(System.in);
             System.out.println("Menu: \nenter 1 - adding contact" + " " + "\nenter 2 - editing contact" + " "
                     + "\nenter 3 - deleting contact" + " " + "\nenter 4 - to exit");
             int input = sc.nextInt();
