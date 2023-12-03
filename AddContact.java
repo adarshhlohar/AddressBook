@@ -112,6 +112,7 @@ public class AddContact {
 
         if(isPersonFound) {
             list.removeIf(list->list.getFirstName().equals(firstName));
+            System.out.println("The name is successfully");
             System.out.println("The name is successfully deleted");
         }else{
             System.out.println(firstName + " person was not found");
