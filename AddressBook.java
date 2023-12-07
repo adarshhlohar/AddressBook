@@ -3,6 +3,11 @@ import java.util.Scanner;
 public class AddressBook {
     public static void main(String[] args) {
         System.out.println("Hii and Welcome to MY ADDRESS BOOK Project !!!");
+        /*
+         * here we have created the object of AddContact Class we can access the methods in 
+         * the AddContact After That do While Loop In and in this we will Created a Switch case
+         * The while loop Always true it flase when the user will enter valid exit input
+         */
         AddContact add = new AddContact();
         Scanner sc = new Scanner(System.in);
         do {
