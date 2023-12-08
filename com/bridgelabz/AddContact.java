@@ -1,3 +1,4 @@
+package com.bridgelabz;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -7,7 +8,7 @@ import java.util.Scanner;
  */
 public class AddContact {
 
-    //Use Case 5- We can Add the multiple person in Address Book
+    //Use Case 5- We can Add the multiple person in Address
     /*
      * Here we can created Arraylist which store the object of ContactDetail class
      */

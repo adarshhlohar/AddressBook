@@ -1,9 +1,11 @@
-
 /*
  * Here We can created a contact detatil class which can contain the all User data 
  * we can set and get the by using the setter and getter And the toString method which can 
  * give the data user will entered.
  */
+package com.bridgelabz;
+
+
 public class ContactDetail {
     // Use Case 1
     private String firstName;
