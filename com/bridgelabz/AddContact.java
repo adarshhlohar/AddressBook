@@ -7,7 +7,6 @@ import java.util.Scanner;
  * And deleteContact
  */
 public class AddContact {
-
     //Use Case 5- We can Add the multiple person in Address
     /*
      * Here we can created Arraylist which store the object of ContactDetail class
