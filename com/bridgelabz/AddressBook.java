@@ -15,7 +15,7 @@ public class AddressBook {
 	 */
 	HashMap<String, ArrayList<ContactDetail>> addressBook = new HashMap<>();
 	ArrayList<ContactDetail> list = new ArrayList<>();
-
+	AddContact addContact = new AddContact();
 	Scanner sc = new Scanner(System.in);
 
 	public void addAddressBook() {
@@ -28,10 +28,12 @@ public class AddressBook {
 		while (b) {
 			System.out.println();
 			addContact();
+
 			System.out.println("If you want add more contact y/n");
 			char input = sc.next().charAt(0);
 			if (input == 'y' || input == 'Y') {
 				b = true;
+				addressBook.put(key, list);
 			} else {
 				addressBook.put(key, list);
 				b = false;
@@ -42,7 +44,6 @@ public class AddressBook {
 		System.out.println(list);
 
 		addressBook.put(key, list);
-
 	}
 
 	public void displayAddressBookByUniqueName() {
@@ -71,22 +72,27 @@ public class AddressBook {
 		Scanner sc = new Scanner(System.in);
 		ContactDetail contact = new ContactDetail();
 		System.out.println("Enter the first name:");
-		contact.setFirstName(sc.next());
-		System.out.println("Enter the last name:");
-		contact.setLastName(sc.next());
-		System.out.println("Enter the address:");
-		contact.setAddress(sc.next());
-		System.out.println("Enter the city:");
-		contact.setCity(sc.next());
-		System.out.println("Enter the state:");
-		contact.setState(sc.next());
-		System.out.println("Enter the zip code:");
-		contact.setZipCode(sc.next());
-		System.out.println("Enter the phone number:");
-		contact.setPhoneNumber(sc.next());
-		System.out.println("Enter the email_id:");
-		contact.setEmailId(sc.next());
-		list.add(contact);
+		String name = sc.next();
+		if(!isPersonNameIsUnique(name)){
+			contact.setFirstName(name);
+			System.out.println("Enter the last name:");
+			contact.setLastName(sc.next());
+			System.out.println("Enter the address:");
+			contact.setAddress(sc.next());
+			System.out.println("Enter the city:");
+			contact.setCity(sc.next());
+			System.out.println("Enter the state:");
+			contact.setState(sc.next());
+			System.out.println("Enter the zip code:");
+			contact.setZipCode(sc.next());
+			System.out.println("Enter the phone number:");
+			contact.setPhoneNumber(sc.next());
+			System.out.println("Enter the email_id:");
+			contact.setEmailId(sc.next());
+			list.add(contact);
+		}else{
+			System.out.println("Please Enter the unique name !!!");
+		}
 	}
 
 	void display(ArrayList<ContactDetail> list2) {
@@ -97,4 +103,18 @@ public class AddressBook {
 
 	}
 
+	public boolean isPersonNameIsUnique(String name){
+		long countName = 0;
+		for(Map.Entry<String,ArrayList<ContactDetail>> elem : addressBook.entrySet()){
+			String addressBookName = elem.getKey();
+			System.out.println(addressBookName);
+			ArrayList<ContactDetail> contacts = elem.getValue(); 
+			countName = contacts.stream().filter(n -> n.getFirstName().equals(name)).count();
+		}
+		if(countName > 0){
+			return true;
+		}else{
+			return false;
+		}
+	}
 }
