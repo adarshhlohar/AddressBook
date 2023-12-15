@@ -85,4 +85,5 @@ public class ContactDetail {
     public String toString() {
         return "ContactDetail [firstName=" + firstName + ", lastName=" + lastName + ", address=" + address + ", city=" + city + ", state=" + state + ", zipCode=" + zipCode + ", phoneNumber=" + phoneNumber + ", emailId=" + emailId + "]";
     }
+
 }
