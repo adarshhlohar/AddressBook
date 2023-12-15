@@ -1,5 +1,6 @@
 package com.bridgelabz;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -12,55 +13,88 @@ public class AddressBook {
 	 * Switch case The while loop Always true it flase when the user will enter
 	 * valid exit input
 	 */
-	AddContact add = new AddContact();
-	HashMap<String, AddContact> addressBook = new HashMap<>();
+	HashMap<String, ArrayList<ContactDetail>> addressBook = new HashMap<>();
+	ArrayList<ContactDetail> list = new ArrayList<>();
+
 	Scanner sc = new Scanner(System.in);
 
 	public void addAddressBook() {
+		list = new ArrayList<>();
+		list.clear();
 		System.out.println("Enter The Unique Name for the Address book");
 		String key = sc.next();
-//			System.out.println("Menu: \nenter 1 - adding contact" + " " + "\nenter 2 - editing contact" + " "
-//					+ "\nenter 3 - deleting contact" + " " + "\nenter 4 - If you want to exit");
 
-		System.out.println("How may Contact You want Add in this AddressBook");
-		int contactLength = sc.nextInt();
-
-		for (int i = 0; i < contactLength; i++) {
+		boolean b = true;
+		while (b) {
 			System.out.println();
-			add.addContact();
-//			add.display();
+			addContact();
+			System.out.println("If you want add more contact y/n");
+			char input = sc.next().charAt(0);
+			if (input == 'y' || input == 'Y') {
+				b = true;
+			} else {
+				addressBook.put(key, list);
+				b = false;
+			}
 		}
-//		System.out.println("If you want to edit Some Contact Enter Y");
-//		char editContact = sc.next().charAt(0);
-//		if (editContact == 'y' || editContact == 'Y') {
-//			add.editContact();
-//			add.display();
-//		}
-//
-//		System.out.println("If you want to delete Some Contact Enter y");
-//		char deleteContact = sc.next().charAt(0);
-//		if (deleteContact == 'y' || deleteContact == 'Y') {
-//			add.deleteContact();
-//			add.display();
-//		}
-		addressBook.put(key, add);
+
+		System.out.println("this is list");
+		System.out.println(list);
+
+		addressBook.put(key, list);
+
 	}
 
 	public void displayAddressBookByUniqueName() {
-		for (Map.Entry<String, AddContact> obj : addressBook.entrySet()) {
+		for (Map.Entry<String, ArrayList<ContactDetail>> obj : addressBook.entrySet()) {
 			System.out.println("The key is : " + obj.getKey());
+			ArrayList<ContactDetail> contact = obj.getValue();
+			for (ContactDetail c : contact) {
+				System.out.println(c.toString());
+			}
 		}
 	}
-	
-	
+
 	public void displayAddressBookDetail() {
 		System.out.println("Enter the  Address Book Name You want see the Contact Detail");
 		String AddressBookName = sc.next();
 		boolean isAddressBookPresent = addressBook.containsKey(AddressBookName);
-		if(isAddressBookPresent) {
-			AddContact ContactDetail = addressBook.get(AddressBookName);
-			ContactDetail.display();
+		if (isAddressBookPresent) {
+			ArrayList<ContactDetail> contactDetail = addressBook.get(AddressBookName);
+			for (ContactDetail c : contactDetail) {
+				System.out.println(c.toString());
+			}
 		}
+	}
+
+	void addContact() {
+		Scanner sc = new Scanner(System.in);
+		ContactDetail contact = new ContactDetail();
+		System.out.println("Enter the first name:");
+		contact.setFirstName(sc.next());
+		System.out.println("Enter the last name:");
+		contact.setLastName(sc.next());
+		System.out.println("Enter the address:");
+		contact.setAddress(sc.next());
+		System.out.println("Enter the city:");
+		contact.setCity(sc.next());
+		System.out.println("Enter the state:");
+		contact.setState(sc.next());
+		System.out.println("Enter the zip code:");
+		contact.setZipCode(sc.next());
+		System.out.println("Enter the phone number:");
+		contact.setPhoneNumber(sc.next());
+		System.out.println("Enter the email_id:");
+		contact.setEmailId(sc.next());
+		list.add(contact);
+	}
+
+	void display(ArrayList<ContactDetail> list2) {
+		System.out.println(list2.toString());
+	}
+
+	void displayAddressBook() {
+
 	}
 
 }
