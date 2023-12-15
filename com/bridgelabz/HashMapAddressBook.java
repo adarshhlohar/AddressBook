@@ -18,6 +18,7 @@ public class HashMapAddressBook {
 				ad.displayAddressBookByUniqueName();
 				System.out.println("If you want to see the Address Book y/n?");
 				char isYes = sc.next().charAt(0);
+
 				if(isYes == 'y' || isYes == 'Y') {
 					ad.displayAddressBookDetail();
 				}
