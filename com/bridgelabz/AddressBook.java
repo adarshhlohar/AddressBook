@@ -2,8 +2,11 @@ package com.bridgelabz;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 public class AddressBook {
 
@@ -116,5 +119,17 @@ public class AddressBook {
 		}else{
 			return false;
 		}
+	}
+
+	List<ContactDetail> cityPerson;
+	public void findPersonUsingCityName(String city){
+		for(Map.Entry<String,ArrayList<ContactDetail>> elem : addressBook.entrySet()){
+			ArrayList<ContactDetail> contacts = elem.getValue();
+			cityPerson = contacts.stream().filter(n -> n.getCity().equals(city)).collect(Collectors.toList());
+		}
+	}
+
+	public void viewPersonFromCity(){
+		
 	}
 }
