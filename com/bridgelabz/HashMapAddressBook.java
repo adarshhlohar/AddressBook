@@ -8,7 +8,7 @@ public class HashMapAddressBook {
 		AddressBook ad = new AddressBook();
 		do {
 			System.out.println(
-					"Enter 1 for adding new Address Book \nEnter 2 for display Address Book Names  \nEnter 3 for exit from the Address Book");
+					"Enter 1 for adding new Address Book. \nEnter 2 for display Address Book Names. \nEnter 3 Finding person by using the city name.  \nEnter 4 for exit from the Address Book.");
 			Scanner sc = new Scanner(System.in);
 			int input = sc.nextInt();
 			switch (input) {
@@ -26,6 +26,11 @@ public class HashMapAddressBook {
 					}
 					break;
 				case 3:
+					System.out.println("Enter the name of city you want find person");
+					String city = sc.next();
+					ad.findPersonUsingCityName(city);
+					break;
+				case 4:
 					System.out.println("Exiting the Address Book");
 					System.exit(0);
 
