@@ -120,16 +120,16 @@ public class AddressBook {
 			return false;
 		}
 	}
-
-	List<ContactDetail> cityPerson;
+	
 	public void findPersonUsingCityName(String city){
 		for(Map.Entry<String,ArrayList<ContactDetail>> elem : addressBook.entrySet()){
 			ArrayList<ContactDetail> contacts = elem.getValue();
-			cityPerson = contacts.stream().filter(n -> n.getCity().equals(city)).collect(Collectors.toList());
+			List<ContactDetail> cityPerson = contacts.stream().filter(n -> n.getCity().equals(city)).collect(Collectors.toList());
+			for(ContactDetail c : cityPerson){
+				System.out.println(c.toString());
+			}
 		}
-	}
-
-	public void viewPersonFromCity(){
 		
 	}
+
 }
