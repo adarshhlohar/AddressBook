@@ -5,8 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
+
 
 public class AddressBook {
 
@@ -129,7 +129,15 @@ public class AddressBook {
 				System.out.println(c.toString());
 			}
 		}
-		
+	}
+
+	public void countPersonByCity(String city){
+		long totalPerson = 0;
+		for(Map.Entry<String,ArrayList<ContactDetail>> elem : addressBook.entrySet()){
+			ArrayList<ContactDetail> contacts = elem.getValue();
+			totalPerson += contacts.stream().filter(n -> n.getCity().equals(city)).count();
+		}
+		System.out.println("The total Person in the " + city + " city is : " + totalPerson);
 	}
 
 }
