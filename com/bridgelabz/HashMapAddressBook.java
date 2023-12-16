@@ -8,7 +8,7 @@ public class HashMapAddressBook {
 		AddressBook ad = new AddressBook();
 		do {
 			System.out.println(
-					"Enter 1 for adding new Address Book. \nEnter 2 for display Address Book Names. \nEnter 3 Finding person by using the city name.  \nEnter 4 for exit from the Address Book.");
+					"Enter 1 for adding new Address Book. \nEnter 2 for display Address Book Names. \nEnter 3 Finding person by using the city name. \nEnter 4 Find the count of persons in the city \nEnter 5 for exit from the Address Book.");
 			Scanner sc = new Scanner(System.in);
 			int input = sc.nextInt();
 			switch (input) {
@@ -20,7 +20,6 @@ public class HashMapAddressBook {
 					ad.displayAddressBookByUniqueName();
 					System.out.println("If you want to see the Address Book y/n?");
 					char isYes = sc.next().charAt(0);
-
 					if (isYes == 'y' || isYes == 'Y') {
 						ad.displayAddressBookDetail();
 					}
@@ -31,9 +30,13 @@ public class HashMapAddressBook {
 					ad.findPersonUsingCityName(city);
 					break;
 				case 4:
+					System.out.println("Enter the city of you want find count of person");
+					String city1 = sc.next();
+					ad.countPersonByCity(city1);
+					break;
+				case 5:
 					System.out.println("Exiting the Address Book");
 					System.exit(0);
-
 			}
 		} while (true);
 	}
