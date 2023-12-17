@@ -27,7 +27,6 @@ public class AddressBook {
 		list.clear();
 		System.out.println("Enter The Unique Name for the Address book");
 		String key = sc.next();
-
 		boolean b = true;
 		while (b) {
 			System.out.println();
@@ -43,20 +42,17 @@ public class AddressBook {
 				b = false;
 			}
 		}
-
-		System.out.println("this is list");
-		System.out.println(list);
-
 		addressBook.put(key, list);
+		System.out.println("Address Book Added Successfully......!");
 	}
 
 	public void displayAddressBookByUniqueName() {
 		for (Map.Entry<String, ArrayList<ContactDetail>> obj : addressBook.entrySet()) {
-			System.out.println("The key is : " + obj.getKey());
-			ArrayList<ContactDetail> contact = obj.getValue();
-			for (ContactDetail c : contact) {
-				System.out.println(c.toString());
-			}
+			System.out.println("----------The key are----------\n" + obj.getKey());
+			// ArrayList<ContactDetail> contact = obj.getValue();
+			// for (ContactDetail c : contact) {
+			// 	System.out.println(c.toString());
+			// }
 		}
 	}
 
@@ -110,8 +106,6 @@ public class AddressBook {
 	public boolean isPersonNameIsUnique(String name) {
 		long countName = 0;
 		for (Map.Entry<String, ArrayList<ContactDetail>> elem : addressBook.entrySet()) {
-			String addressBookName = elem.getKey();
-			System.out.println(addressBookName);
 			ArrayList<ContactDetail> contacts = elem.getValue();
 			countName = contacts.stream().filter(n -> n.getFirstName().equals(name)).count();
 		}
@@ -145,7 +139,17 @@ public class AddressBook {
 	public void sortByPeopleName() {
 		for (Map.Entry<String, ArrayList<ContactDetail>> e : addressBook.entrySet()) {
 			CompareWithPeopleName comparePeople = new CompareWithPeopleName();
-			Collections.sort(e.getValue(),comparePeople);
+			Collections.sort(e.getValue(), comparePeople);
+			System.out.println("After Sorting List");
+			display(e.getValue());
+		}
+		System.out.println("Sorted Successfully......!");
+	}
+
+	public void sortByStateAndCityName() {
+		for (Map.Entry<String, ArrayList<ContactDetail>> e : addressBook.entrySet()) {
+			CompareWithCityState compareCityState = new CompareWithCityState();
+			Collections.sort(e.getValue(), compareCityState);
 			System.out.println("After Sorting List");
 			display(e.getValue());
 		}
@@ -158,4 +162,19 @@ class CompareWithPeopleName implements Comparator<ContactDetail> {
 	public int compare(ContactDetail o1, ContactDetail o2) {
 		return o1.getFirstName().compareTo(o2.getFirstName());
 	}
+}
+
+class CompareWithCityState implements Comparator<ContactDetail> {
+
+	@Override
+	public int compare(ContactDetail o1, ContactDetail o2) {
+		int compareState = o1.getState().compareTo(o2.getState());
+		int compareCity = o1.getCity().compareTo(o2.getCity());
+		if (compareState == 0) {
+			return compareCity;
+		} else {
+			return compareState;
+		}
+	}
+
 }
