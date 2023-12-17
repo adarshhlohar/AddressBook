@@ -1,4 +1,5 @@
 package com.bridgelabz;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -7,7 +8,7 @@ import java.util.Scanner;
  * And deleteContact
  */
 public class AddContact {
-    //Use Case 5- We can Add the multiple person in Address
+    // Use Case 5- We can Add the multiple person in Address
     /*
      * Here we can created Arraylist which store the object of ContactDetail class
      */
@@ -24,7 +25,6 @@ public class AddContact {
      * After setting the all parameter of contact we can add the contact object in
      * ArrayList
      */
-    
 
     /*
      * @param We can created a display method which cannot be give any parameter.
@@ -33,7 +33,6 @@ public class AddContact {
      * the display method is displaying the data from the list by using the toString
      * method
      */
-    
 
     // Use Case3: method for editing the existing contact
     /*

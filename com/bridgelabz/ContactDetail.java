@@ -5,7 +5,6 @@
  */
 package com.bridgelabz;
 
-
 public class ContactDetail {
     // Use Case 1
     private String firstName;
@@ -83,7 +82,9 @@ public class ContactDetail {
 
     @Override
     public String toString() {
-        return "ContactDetail [firstName=" + firstName + ", lastName=" + lastName + ", address=" + address + ", city=" + city + ", state=" + state + ", zipCode=" + zipCode + ", phoneNumber=" + phoneNumber + ", emailId=" + emailId + "]";
+        return "\nContactDetail [firstName=" + firstName + ", lastName=" + lastName + ", address=" + address + ", city="
+                + city + ", state=" + state + ", zipCode=" + zipCode + ", phoneNumber=" + phoneNumber + ", emailId="
+                + emailId + "]";
     }
 
 }
