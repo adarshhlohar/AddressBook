@@ -1,12 +1,13 @@
 package com.bridgelabz;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.stream.Collectors;
-
 
 public class AddressBook {
 
@@ -76,7 +77,7 @@ public class AddressBook {
 		ContactDetail contact = new ContactDetail();
 		System.out.println("Enter the first name:");
 		String name = sc.next();
-		if(!isPersonNameIsUnique(name)){
+		if (!isPersonNameIsUnique(name)) {
 			contact.setFirstName(name);
 			System.out.println("Enter the last name:");
 			contact.setLastName(sc.next());
@@ -93,7 +94,7 @@ public class AddressBook {
 			System.out.println("Enter the email_id:");
 			contact.setEmailId(sc.next());
 			list.add(contact);
-		}else{
+		} else {
 			System.out.println("Please Enter the unique name !!!");
 		}
 	}
@@ -106,38 +107,55 @@ public class AddressBook {
 
 	}
 
-	public boolean isPersonNameIsUnique(String name){
+	public boolean isPersonNameIsUnique(String name) {
 		long countName = 0;
-		for(Map.Entry<String,ArrayList<ContactDetail>> elem : addressBook.entrySet()){
+		for (Map.Entry<String, ArrayList<ContactDetail>> elem : addressBook.entrySet()) {
 			String addressBookName = elem.getKey();
 			System.out.println(addressBookName);
-			ArrayList<ContactDetail> contacts = elem.getValue(); 
+			ArrayList<ContactDetail> contacts = elem.getValue();
 			countName = contacts.stream().filter(n -> n.getFirstName().equals(name)).count();
 		}
-		if(countName > 0){
+		if (countName > 0) {
 			return true;
-		}else{
+		} else {
 			return false;
 		}
 	}
-	
-	public void findPersonUsingCityName(String city){
-		for(Map.Entry<String,ArrayList<ContactDetail>> elem : addressBook.entrySet()){
+
+	public void findPersonUsingCityName(String city) {
+		for (Map.Entry<String, ArrayList<ContactDetail>> elem : addressBook.entrySet()) {
 			ArrayList<ContactDetail> contacts = elem.getValue();
-			List<ContactDetail> cityPerson = contacts.stream().filter(n -> n.getCity().equals(city)).collect(Collectors.toList());
-			for(ContactDetail c : cityPerson){
+			List<ContactDetail> cityPerson = contacts.stream().filter(n -> n.getCity().equals(city))
+					.collect(Collectors.toList());
+			for (ContactDetail c : cityPerson) {
 				System.out.println(c.toString());
 			}
 		}
 	}
 
-	public void countPersonByCity(String city){
+	public void countPersonByCity(String city) {
 		long totalPerson = 0;
-		for(Map.Entry<String,ArrayList<ContactDetail>> elem : addressBook.entrySet()){
+		for (Map.Entry<String, ArrayList<ContactDetail>> elem : addressBook.entrySet()) {
 			ArrayList<ContactDetail> contacts = elem.getValue();
 			totalPerson += contacts.stream().filter(n -> n.getCity().equals(city)).count();
 		}
 		System.out.println("The total Person in the " + city + " city is : " + totalPerson);
 	}
 
+	public void sortByPeopleName() {
+		for (Map.Entry<String, ArrayList<ContactDetail>> e : addressBook.entrySet()) {
+			CompareWithPeopleName comparePeople = new CompareWithPeopleName();
+			Collections.sort(e.getValue(),comparePeople);
+			System.out.println("After Sorting List");
+			display(e.getValue());
+		}
+		System.out.println("Sorted Successfully......!");
+	}
+}
+
+class CompareWithPeopleName implements Comparator<ContactDetail> {
+	@Override
+	public int compare(ContactDetail o1, ContactDetail o2) {
+		return o1.getFirstName().compareTo(o2.getFirstName());
+	}
 }
